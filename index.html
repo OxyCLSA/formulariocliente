@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Produtos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #b1afaf;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], 
+        input[type="email"], 
+        input[type="number"], 
+        input[type="tel"], 
+        select, 
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #0f0f0f;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .radio-group,
+        .checkbox-group {
+            display: flex;
+            gap: 15px;
+        }
+        .radio-group label,
+        .checkbox-group label {
+            display: flex;
+            align-items: center;
+            font-weight: normal;
+        }
+        .radio-group input,
+        .checkbox-group input {
+            margin-right: 5px;
+        }
+        .file-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+        .terms-group {
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+        }
+        .terms-group label {
+            font-weight: normal;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Formulário de Produtos</h1>
+    <form id="produtoForm">
+        <div class="form-group">
+            <label for="nome">Nome (obrigatório)</label>
+            <input type="text" id="nome" name="nome" required pattern="[A-Za-zÀ-ÿ\s]+" title="Apenas letras são permitidas">
+            <div class="error" id="nomeError"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="sobrenome">Sobrenome (obrigatório)</label>
+            <input type="text" id="sobrenome" name="sobrenome" required pattern="[A-Za-zÀ-ÿ\s]+" title="Apenas letras são permitidas">
+            <div class="error" id="sobrenomeError"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="idade">Idade (obrigatório)</label>
+            <input type="number" id="idade" name="idade" required min="0" max="120">
+            <div class="error" id="idadeError"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="sexo">Sexo (obrigatório)</label>
+            <select id="sexo" name="sexo" required>
+                <option value="">Selecione</option>
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+            </select>
+            <div class="error" id="sexoError"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="email">E-mail (obrigatório)</label>
+            <input type="email" id="email" name="email" required>
+            <div class="error" id="emailError"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="telefone">Telefone (obrigatório)</label>
+            <input type="tel" id="telefone" name="telefone" required pattern="[0-9]{10,11}" title="Insira um telefone válido com DDD (10-11 dígitos)">
+            <div class="error" id="telefoneError"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="produto">Produto</label>
+            <select id="produto" name="produto" required>
+                <option value="">Selecione</option>
+                <option value="youtube">Youtube</option>
+                <option value="x">X</option>
+                <option value="globo">Globo</option>
+                <option value="sbt">SBT</option>
+                <option value="tesla">Tesla</option>
+            </select>
+            <div class="error" id="produtoError"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Tipo de atendimento (obrigatório)</label>
+            <div class="radio-group">
+                <label>
+                    <input type="radio" id="ajuda" name="atendimento" value="ajuda" required>
+                    Ajuda
+                </label>
+                <label>
+                    <input type="radio" id="elogio" name="atendimento" value="elogio">
+                    Elogio
+                </label>
+                <label>
+                    <input type="radio" id="feedback" name="atendimento" value="feedback">
+                    Feedback
+                </label>
+            </div>
+            <div class="error" id="atendimentoError"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Qual seu meio de contato preferencial? (obrigatório)</label>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" name="contato" value="email" required>
+                    E-mail
+                </label>
+                <label>
+                    <input type="checkbox" name="contato" value="telefone">
+                    Telefone
+                </label>
+            </div>
+            <div class="error" id="contatoError"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="mensagem">Como podemos te ajudar? (obrigatório)</label>
+            <textarea id="mensagem" name="mensagem" rows="9" required></textarea>
+            <div class="error" id="mensagemError"></div>
+        </div>
+
+        <div class="form-group">
+            <label>Adicione um anexo</label>
+            <div class="file-input">
+                <input type="file" id="anexo" name="anexo">
+                <span>Nenhum arquivo escolhido</span>
+            </div>
+        </div>
+
+        <div class="form-group terms-group">
+            <input type="checkbox" id="termos" name="termos" required>
+            <label for="termos">Eu li e concordo com os <a href="./termo.html" target="_blank">Termos de Uso</a>.</label>
+        </div>
+
+        <button type="submit">Enviar</button>
+    </form>
+
+    <script>
+        document.getElementById('produtoForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            // Limpar erros anteriores
+            const errorElements = document.querySelectorAll('.error');
+            errorElements.forEach(el => el.textContent = '');
+
+            // Validação de Nome
+            const nome = document.getElementById('nome');
+            if (!nome.value.match(/^[A-Za-zÀ-ÿ\s]+$/)) {
+                document.getElementById('nomeError').textContent = 'Nome inválido. Apenas letras são permitidas.';
+                nome.focus();
+                return;
+            }
+
+            // Validação de Sobrenome
+            const sobrenome = document.getElementById('sobrenome');
+            if (!sobrenome.value.match(/^[A-Za-zÀ-ÿ\s]+$/)) {
+                document.getElementById('sobrenomeError').textContent = 'Sobrenome inválido. Apenas letras são permitidas.';
+                sobrenome.focus();
+                return;
+            }
+
+            // Validação de Idade
+            const idade = document.getElementById('idade');
+            if (idade.value < 0 || idade.value > 120) {
+                document.getElementById('idadeError').textContent = 'Idade inválida. Deve estar entre 0 e 120.';
+                idade.focus();
+                return;
+            }
+
+            // Validação de Sexo
+            const sexo = document.getElementById('sexo');
+            if (!sexo.value) {
+                document.getElementById('sexoError').textContent = 'Selecione um sexo.';
+                sexo.focus();
+                return;
+            }
+
+            // Validação de Email
+            const email = document.getElementById('email');
+            if (!email.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+                document.getElementById('emailError').textContent = 'Email inválido.';
+                email.focus();
+                return;
+            }
+
+            // Validação de Telefone
+            const telefone = document.getElementById('telefone');
+            if (!telefone.value.match(/^[0-9]{10,11}$/)) {
+                document.getElementById('telefoneError').textContent = 'Telefone inválido. Deve conter 10-11 dígitos.';
+                telefone.focus();
+                return;
+            }
+
+            // Validação de Produto
+            const produto = document.getElementById('produto');
+            if (!produto.value) {
+                document.getElementById('produtoError').textContent = 'Selecione um produto.';
+                produto.focus();
+                return;
+            }
+
+            // Validação de Tipo de Atendimento
+            const atendimento = document.querySelector('input[name="atendimento"]:checked');
+            if (!atendimento) {
+                document.getElementById('atendimentoError').textContent = 'Selecione um tipo de atendimento.';
+                return;
+            }
+
+            // Validação de Meio de Contato
+            const contatos = document.querySelectorAll('input[name="contato"]:checked');
+            if (contatos.length === 0) {
+                document.getElementById('contatoError').textContent = 'Selecione pelo menos um meio de contato.';
+                return;
+            }
+
+            // Validação de Mensagem
+            const mensagem = document.getElementById('mensagem');
+            if (!mensagem.value.trim()) {
+                document.getElementById('mensagemError').textContent = 'Por favor, descreva como podemos te ajudar.';
+                mensagem.focus();
+                return;
+            }
+
+            // Validação de Termos de Uso
+            const termos = document.getElementById('termos');
+            if (!termos.checked) {
+                alert('Você deve aceitar os Termos de Uso para prosseguir.');
+                return;
+            }
+
+            // Se todas as validações passarem, você pode processar o formulário
+            alert('Formulário enviado com sucesso!');
+            this.reset(); // Limpa o formulário
+        });
+    </script>
+</body>
+</html>
